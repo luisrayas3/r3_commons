@@ -12,6 +12,14 @@
 
 #define HAS_STR(FMT, ...) (FMT)[0]
 
+/**
+ * CHECK_* macros.
+ *
+ * Usage:
+ *
+ *     CHECK_SAME(ptr, ptr_exp, "Not equal (%s).", ptr ? "is null" : "other");
+ */
+
 #define CHECK_SAME(VALUE, EXPECTATION, ...)                     \
   do {                                                          \
     void* VALUE_ = VALUE;                                       \
@@ -27,8 +35,8 @@
 
 #define CHECK_EQ(VALUE, EXPECTATION, ...)                            \
   do {                                                          \
-    float VALUE_ = VALUE;                                       \
-    float EXPECTATION_ = EXPECTATION;                           \
+    double VALUE_ = VALUE;                                       \
+    double EXPECTATION_ = EXPECTATION;                           \
     if( VALUE_ != EXPECTATION_ ) {                              \
       fprintf(stderr, "ERROR @ " __FILE__ ", %i:\n", __LINE__); \
       fprintf(stderr, "    " #VALUE " != " #EXPECTATION "\n");  \
@@ -40,8 +48,8 @@
 
 #define CHECK_NE(VALUE, EXPECTATION, ...)                           \
   do {                                                          \
-    float VALUE_ = VALUE;                                       \
-    float EXPECTATION_ = EXPECTATION;                           \
+    double VALUE_ = VALUE;                                       \
+    double EXPECTATION_ = EXPECTATION;                           \
     if( VALUE_ == EXPECTATION_ ) {                              \
       fprintf(stderr, "ERROR @ " __FILE__ ", %i:\n", __LINE__); \
       fprintf(stderr, "    " #VALUE " == " #EXPECTATION "\n");  \
@@ -53,8 +61,8 @@
 
 #define CHECK_LT(VALUE, EXPECTATION, ...)                           \
   do {                                                          \
-    float VALUE_ = VALUE;                                       \
-    float EXPECTATION_ = EXPECTATION;                           \
+    double VALUE_ = VALUE;                                       \
+    double EXPECTATION_ = EXPECTATION;                           \
     if( VALUE_ >= EXPECTATION_ ) {                              \
       fprintf(stderr, "ERROR @ " __FILE__ ", %i:\n", __LINE__); \
       fprintf(stderr, "    " #VALUE " >= " #EXPECTATION "\n");  \
@@ -66,8 +74,8 @@
 
 #define CHECK_APPROX_EQ(VALUE, EXPECTATION, ACCEPT_DELTA, ...)      \
   do {                                                          \
-    float VALUE_ = VALUE;                                       \
-    float EXPECTATION_ = EXPECTATION;                           \
+    double VALUE_ = VALUE;                                       \
+    double EXPECTATION_ = EXPECTATION;                           \
     if( !( VALUE_ - EXPECTATION_ < ACCEPT_DELTA &&              \
            VALUE_ - EXPECTATION_ > -ACCEPT_DELTA ) ) {          \
       fprintf(stderr, "ERROR @ " __FILE__ ", %i:\n", __LINE__); \
